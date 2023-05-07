@@ -7,29 +7,31 @@
 
 
 {% block content %}
-<div class='h-screen bg-slate-500'>
+<div class='h-screen'>
     <div class='flex justify-center'>
         <div>
-            <h1 class='font-bold text-4xl text-white'>FORM LOGIN</h1>
+            <h1 class='font-bold text-4xl text-black'>FORM LOGIN</h1>
         </div>
     </div>
-    <div class='grid gap-y-4'>
-        <div>
-            <label class="text-white">Username: </label>
-            <input type="text" class="rounded"> </input>
+    <div class='grid gap-y-2'>
+        <div class='grid gap-y-4 border-2 border-black p-4'>
+            <div>
+                <p class="text-black">Username:  </p>
+                <input type="text" class="rounded border-2 border-black"> </input>
+            </div>
+            <div>
+                <p class="text-black">Password: </p>
+                <input type="text" class="rounded border-2 border-black"> </input>
+            </div>
         </div>
-        <div>
-            <label class="text-white">Password: </label>
-            <input type="text" class="rounded"> </input>
+        <div class='flex justify-center'>
+            <div>
+                <button class='bg-black w-full rounded p-2'>
+                     <h1 class='font-medium text-xl text-white'>LOGIN</h1>
+                </button>
+            </div>
         </div>
-    </div>
-    <div class='flex justify-center'>
-        <div>
-            <button class='bg-black w-full rounded p-2'>
-                 <h1 class='font-medium text-xl text-white'>LOGIN</h1>
-            </button>
-        </div>
-    </div>
+    <div>
 </div>
 
 {% endblock content %}
