@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Registrasi Tim</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<body style="background-color:beige ;">
+</br>
+    <h1 style="text-align:center ;">Formulir Registrasi</h1>  
+    <div class = "d-flex justify-content-center" style="text-align: center;" >
+        
+    
+        <form>
+            <div class="mb-3">
+              <label class="form-label">Nama Tim:</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Universitas:</label>
+              <input type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3" style="text-align: center;">
+                <button type="submit" class="btn btn-primary" style="align-items: center;">Daftar</button>
+            </div>
+          </form>
+
+    
+    </div>  
+</body>
+
+{% endblock content %}

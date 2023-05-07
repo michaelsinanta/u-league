@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Peminjaman Stadium</title>
+{% endblock meta %}
+
+{% block content %}  
+<style>
+    div.default {
+      width: 1000px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      margin: auto;
+    }
+</style>
+<body style="background-color: beige;">
+    <br>
+    <div class="default">
+        <br>
+        <table class="table table-bordered border-dark">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2">List Pemesanan</th>
+                </tr>
+                <tr>
+                    <th scope="col">Stadium</th>
+                    <th scope="col">Waktu</th>
+                </tr>   
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                    <td>Ankara Stadium</td>
+                    <td>07/05/2022</td>
+                </tr>
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <td colspan="2">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#pinjam">Pesan</button>
+                </td>
+            </tfoot>
+        </table>
+    </div>
+    <div class="modal fade" id="pinjam" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">PEMINJAMAN STADIUM</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <div class="dropdown">
+                                <label class="form-label">Stadium:</label>      
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Choose
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Allianz Arena</a></li>
+                                    <li><a class="dropdown-item" href="#">...</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tanggal:</label>
+                            <input type="date">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#choosetime" data-bs-toggle="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="choosetime" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">List Waktu Stadium Allianz Arena</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div style="width: 400px; display: flex; justify-content: center; text-align: center; margin: auto;">
+
+                        <table class="table table-bordered border-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col" colspan="2">List Waktu Stadium Allianz Arena</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Waktu</td>
+                                    <td>Action</td>
+                                </tr>
+                                <tr>
+                                    <td>10:00</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success">Pesan</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>...</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Pesan</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#pinjam" data-bs-toggle="modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
