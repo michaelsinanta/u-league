@@ -17,3 +17,24 @@ def list_pertandingan(request):
 
 def history_rapat(request):
     return render(request, 'history_rapat.html')
+
+def pengguna(request):
+    return render(request, 'pengguna.html')
+
+def regis1(request):
+    return render(request, 'form_regis1.html')
+
+def regis2(request):
+    return render(request, 'form_regis2.html')
+
+def mulai_rapat(request):
+    return render(request, 'mulai_rapat.html')
+
+def rapat(request):
+    return render(request, 'rapat.html')
+
+def mulai_pertandingan(request):
+    return render(request, 'mulai_pertandingan.html')
+
+def peristiwa(request):
+    return render(request, 'peristiwa.html')
