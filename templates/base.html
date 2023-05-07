@@ -1,18 +1,139 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% block meta %} {% endblock meta %}
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  {% block meta %}
-  {% endblock meta %}
-</head>
+  <div>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <nav
+      style="
+        position: fixed;
+        display: flex;
+        top: 0px;
+        width: 100%;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
+        padding-left: 20px;
+        padding-right: 20px;
+      "
+      class="navbar navbar-white bg-white navbar-expand-lg fixed-top"
+    >
+      <img
+        src="https://user-images.githubusercontent.com/97111982/236660495-6b02388b-9442-40d6-88a5-1eeae9f05d05.png"
+        width="65"
+        alt=""
+      />
+      <h3 style="font-weight: bold">U-League</h3>
 
-<body>
-  {% block content %}
-  {% endblock content %}
-</body>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <img
+          src="https://static.thenounproject.com/png/633488-200.png"
+          width="30"
+          alt=""
+        />
+      </button>
+      <div class="collapse navbar-collapse visible" id="navbarNav">
+        <ul
+          style="display: flex; width: 100%; justify-content: flex-end"
+          class="navbar-nav"
+        >
+          <!-- Manager Navbar -->
+          {% if request.user.is_manager %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Mengelola Tim</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Peminjaman Stadium</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">List Pertandingan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">History Rapat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
 
+          <!-- Penonton Navbar -->
+          {% elif request.user.is_spectator %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pembelian Tiket</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">List Pertandingan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+
+          <!-- Panitia Navbar -->
+          {% elif request.user.is_committee %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Rapat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Manage Pertandingan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Register</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <body style="margin-top: 100px; padding-left: 20px; padding-right: 20px">
+    {% block content %} {% endblock content %}
+  </body>
 </html>
