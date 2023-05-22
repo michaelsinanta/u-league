@@ -53,7 +53,7 @@
             <div class="navbar-collapse visible" id="navbarNav">
                 <ul style="display: flex; width: 100%; justify-content: flex-end" class="navbar-nav">
                     <!-- Manager Navbar -->
-                    {% if request.user.is_manager %}
+                    {% if user.role == 'Manajer' or user.role == 'manajer' %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Dashboard</a>
                     </li>
@@ -70,11 +70,11 @@
                         <a class="nav-link" href="#">History Rapat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="{% url 'example_app:logout_user' %}">Logout</a>
                     </li>
 
                     <!-- Penonton Navbar -->
-                    {% elif request.user.is_spectator %}
+                    {% elif user.role == 'Penonton' or user.role == 'penonton' %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Dashboard</a>
                     </li>
@@ -85,11 +85,11 @@
                         <a class="nav-link" href="#">List Pertandingan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="{% url 'example_app:logout_user' %}">Logout</a>
                     </li>
 
                     <!-- Panitia Navbar -->
-                    {% elif request.user.is_committee %}
+                    {% elif user.role == 'Panitia' or user.role == 'panitia' %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Dashboard</a>
                     </li>
@@ -100,14 +100,14 @@
                         <a class="nav-link" href="#">Manage Pertandingan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="{% url 'example_app:logout_user' %}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="{% url 'example_app:login_user' %}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
+                        <a class="nav-link" href="{% url 'example_app:show_register' %}">Register</a>
                     </li>
                     {% endif %}
                 </ul>

@@ -1,7 +1,21 @@
 from django.shortcuts import render
+from example_app.utils import get_user_role
 
 def index(request):
-    return render(request, 'index.html')
+    username = request.COOKIES.get('username', None)
+
+    if username is None:
+        return render(request, 'index.html', {}) 
+
+    role = get_user_role(username)
+    context = {
+        'user': {
+            'role': f'{role}',
+        }
+    }
+
+    return render(request, 'index.html', context)
+
 
 def dashboard_manajer(request):
     return render(request, 'dashboard_manajer.html')

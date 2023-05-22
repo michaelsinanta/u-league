@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-=
+
 {% block meta %}
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Login Page</title>
 {% endblock meta %}
-
 
 {% block content %}
 <div class='h-screen'>
@@ -17,21 +16,57 @@
         <div class='grid gap-y-4 border-2 border-black p-4'>
             <div>
                 <p class="text-black">Username:  </p>
-                <input type="text" class="rounded border-2 border-black"> </input>
+                <input type="text" id="username" class="rounded border-2 border-black">
             </div>
             <div>
                 <p class="text-black">Password: </p>
-                <input type="text" class="rounded border-2 border-black"> </input>
+                <input type="password" id="password" class="rounded border-2 border-black">
             </div>
         </div>
         <div class='flex justify-center'>
             <div>
-                <button class='bg-black w-full rounded p-2'>
+                <button id="loginBtn" class='bg-black w-full rounded p-2'>
                      <h1 class='font-medium text-xl text-white'>LOGIN</h1>
                 </button>
             </div>
         </div>
-    <div>
+    </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    var loginUrl = '{% url "example_app:login_user" %}';
+    var indexUrl = '{% url "example_app:index" %}';
+
+    $(document).ready(function() {
+        $("#loginBtn").click(function() {
+            var username = $("#username").val();
+            var password = $("#password").val();
+
+            if (username === "" || password === "") {
+                alert('Data yang diisikan belum lengkap, silakan lengkapi data terlebih dahulu.');
+            } else {
+                $.ajax({
+                    method: 'POST',
+                    url: loginUrl,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    },
+                    data: {
+                        username: username,
+                        password: password,
+                    },
+                    success: function(response) {
+                        window.location.href = indexUrl;
+                    },
+                    error: function(error) {
+                        alert('Error occurred during login');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 
 {% endblock content %}
