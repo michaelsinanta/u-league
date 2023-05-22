@@ -27,6 +27,9 @@ def dashboard_panitia(request):
 def beli_tiket(request):
     return render(request, 'beli_tiket.html')
 
+def pilih_stadium(request):
+    return render(request, 'pilih_stadium.html')
+
 def list_waktu_stadium(request):
     return render(request, 'list_waktu_stadium.html')
 
