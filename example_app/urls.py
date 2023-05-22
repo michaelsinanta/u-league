@@ -1,5 +1,4 @@
 from django.urls import path
-from example_app.views import index, dashboardManajer, dashboardPenonton, dashboardPanitia, login, manage_pertanding, landing_page
 from example_app.views import *
 
 app_name = 'example_app'
