@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+=
+{% block meta %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Landing Page</title>
+{% endblock meta %}
+
+
+{% block content %}
+<div class='flex justify-center items-center h-screen'>
+    <div>   
+        <h1 class='font-bold text-3xl'> 
+            U-LEAGUE - 8
+        </h1>
+        <div class='flex gap-x-4 font-bold'>
+            <div class='bg-slate-300 w-full text-center rounded'>
+                <button> <a href='/login'> LOGIN </a> </button>
+            </div>
+            <div class='bg-slate-300 w-full text-center rounded px-2'>
+                <button> REGISTER </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
