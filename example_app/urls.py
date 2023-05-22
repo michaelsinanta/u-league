@@ -2,6 +2,8 @@ from django.urls import path
 from example_app.views import *
 from example_app.cru_pengguna_views import login_user, logout_user, show_register
 from example_app.dashboard_views import dashboard
+from example_app.cru_peminjaman_stadium_views import peminjaman_stadium
+from example_app.cr_mulai_rapat_views import mulai_rapat, rapat
 
 app_name = 'example_app'
 
@@ -25,11 +27,11 @@ urlpatterns = [
     path('register', show_register , name='show_register'),
     path('form1', regis1, name='form1'),
     path('form2', regis2, name='form2'),
-    path('mulai-rapat', mulai_rapat, name='mulai-rapat'),
+    path('mulai-rapat', mulai_rapat, name='mulai_rapat'),
     path('rapat', rapat, name='rapat'),
     path('mulai-pertandingan', mulai_pertandingan, name='mulai-pertandingan'),
     path('peristiwa', peristiwa, name='peristiwa'),
     path('register-tim', register_tim, name='register_tim'),
-    path('peminjaman', peminjaman_stadium, name='peminjaman_stadium'),
+    path('peminjaman-stadium', peminjaman_stadium, name='peminjaman_stadium'),
     path('my-team', my_team, name='my_team'),
 ]

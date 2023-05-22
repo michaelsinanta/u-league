@@ -20,7 +20,7 @@ def get_user_role(username):
         if len(user_list) != 0:
             return 'Manajer'
     
-        # Check Courier
+        # Check Panitia
         cursor.execute(f'''
             SELECT *
             FROM PANITIA
@@ -30,7 +30,7 @@ def get_user_role(username):
         if len(user_list) != 0:
             return 'Panitia'
     
-        # Check Customer
+        # Check Penonton
         cursor.execute(f'''
             SELECT *
             FROM PENONTON
@@ -39,5 +39,39 @@ def get_user_role(username):
         user_list = dict_fetch_all(cursor)
         if len(user_list) != 0:
             return 'Penonton'      
+    
+    return 'none'
+
+def get_user_id(username):
+    with connection.cursor() as cursor:
+        # Check Manajer
+        cursor.execute(f'''
+            SELECT id_manajer
+            FROM MANAJER
+            WHERE username='{username}';
+        ''')
+        result = cursor.fetchone()
+        if result is not None:
+            return result[0]
+        
+        # Check Panitia
+        cursor.execute(f'''
+            SELECT id_panitia
+            FROM PANITIA
+            WHERE username='{username}';
+        ''')
+        result = cursor.fetchone()
+        if result is not None:
+            return result[0]
+    
+        # Check Penonton
+        cursor.execute(f'''
+            SELECT id_penonton
+            FROM PENONTON
+            WHERE username='{username}';
+        ''')
+        result = cursor.fetchone()
+        if result is not None:
+            return result[0]    
     
     return 'none'

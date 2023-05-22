@@ -82,9 +82,9 @@
             <span class="input-group-text" id="basic-addon1">Stadium</span>
             <select class="form-control">
               <option value="0">Select Stadium:</option>
-              <option value="1">Stadium A</option>
-              <option value="2">Stadium B</option>
-              <option value="3">Stadium C</option>
+              {% for s in stadiums %}
+              <option value="{{s.id_stadium}}">{{s.nama}}</option>
+              {% endfor %}
             </select>
           </div>
           <div class="input-group mb-3">
