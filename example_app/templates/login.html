@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+=
+{% block meta %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login Page</title>
+{% endblock meta %}
+
+
+{% block content %}
+<div class='h-screen'>
+    <div class='flex justify-center'>
+        <div>
+            <h1 class='font-bold text-4xl text-black'>FORM LOGIN</h1>
+        </div>
+    </div>
+    <div class='grid gap-y-2'>
+        <div class='grid gap-y-4 border-2 border-black p-4'>
+            <div>
+                <p class="text-black">Username:  </p>
+                <input type="text" class="rounded border-2 border-black"> </input>
+            </div>
+            <div>
+                <p class="text-black">Password: </p>
+                <input type="text" class="rounded border-2 border-black"> </input>
+            </div>
+        </div>
+        <div class='flex justify-center'>
+            <div>
+                <button class='bg-black w-full rounded p-2'>
+                     <h1 class='font-medium text-xl text-white'>LOGIN</h1>
+                </button>
+            </div>
+        </div>
+    <div>
+</div>
+
+{% endblock content %}
