@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.db import connection
 from django.shortcuts import redirect, render
+from example_app.utils import dict_fetch_all
+from django.views.decorators.csrf import csrf_exempt
 
 def login_user(request):
     if request.method == 'GET':
@@ -28,10 +30,11 @@ def login_user(request):
             return response
     return HttpResponse(status=404)
 
-def dict_fetch_all(cursor): 
-    "Returns all rows from a cursor as a dict" 
-    desc = cursor.description 
-    return [
-            dict(zip([col[0] for col in desc], row)) 
-            for row in cursor.fetchall() 
-    ]
+def show_register(request):
+    return render(request, 'pengguna.html', {})
+
+def logout_user(request):
+    response = HttpResponse(status=200)
+    response.delete_cookie('username')
+    response.delete_cookie('password')
+    return redirect('example_app:show_register')

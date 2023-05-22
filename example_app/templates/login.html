@@ -61,7 +61,7 @@
                     },
                     success: function(response) {
                         if (response.status === 200) {
-                            window.location.href = `/dashboard`;
+                            window.location.href = '{% url "example_app:dashboard" %}';
                         } else {
                             showError('Email atau password tidak valid');
                         }
