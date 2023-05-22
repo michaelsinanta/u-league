@@ -17,3 +17,12 @@ def list_pertandingan(request):
 
 def history_rapat(request):
     return render(request, 'history_rapat.html')
+
+def register_tim(request):
+    return render(request, 'register_tim.html')
+
+def peminjaman_stadium(request):
+    return render(request, 'peminjaman_stadium.html')
+
+def my_team(request):
+    return render(request, 'my_team.html')

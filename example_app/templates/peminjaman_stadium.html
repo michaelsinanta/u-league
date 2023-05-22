@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Peminjaman Stadium</title>
+<head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+  </head>
+{% endblock meta %}
+
+{% block content %}  
+<style>
+    div.default {
+      width: 1000px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      margin: auto;
+    }
+</style>
+<body style="background-color: beige;">
+    <br>
+    <div class="default">
+        <br>
+        <table class="table table-bordered border-dark">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2">List Pemesanan</th>
+                </tr>
+                <tr>
+                    <th scope="col">Stadium</th>
+                    <th scope="col">Waktu</th>
+                </tr>   
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                    <td>Ankara Stadium</td>
+                    <td>07/05/2022</td>
+                </tr>
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <td colspan="2">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#pinjam">Pesan</button>
+                </td>
+            </tfoot>
+        </table>
+    </div>
+    <div
+    class="modal fade"
+    id="pinjam"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Peminjaman Stadium
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Stadium</span>
+            <select class="form-control">
+              <option value="0">Select Stadium:</option>
+              <option value="1">Stadium A</option>
+              <option value="2">Stadium B</option>
+              <option value="3">Stadium C</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Tanggal</span>
+            <input
+              type="date"
+              class="form-control"
+              aria-describedby="basic-addon2"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button class="btn btn-primary" data-bs-target="#choosetime" data-bs-toggle="modal">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="modal fade" id="choosetime" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">List Waktu Stadium Allianz Arena</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div style="width: 400px; display: flex; justify-content: center; text-align: center; margin: auto;">
+
+                        <table class="table table-bordered border-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col" colspan="2">List Waktu Stadium Allianz Arena</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Waktu</td>
+                                    <td>Action</td>
+                                </tr>
+                                <tr>
+                                    <td>10:00</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success">Pesan</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>...</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Pesan</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                    <button class="btn btn-primary" data-bs-target="#pinjam" data-bs-toggle="modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+crossorigin="anonymous"
+></script>
+{% endblock content %}
