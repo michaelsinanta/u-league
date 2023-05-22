@@ -17,4 +17,7 @@ urlpatterns = [
     path('rapat', rapat, name='rapat'),
     path('mulai-pertandingan', mulai_pertandingan, name='mulai-pertandingan'),
     path('peristiwa', peristiwa, name='peristiwa'),
+    path('register', register_tim, name='register_tim'),
+    path('peminjaman', peminjaman_stadium, name='peminjaman_stadium'),
+    path('my-team', my_team, name='my_team'),
 ]
