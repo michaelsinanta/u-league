@@ -30,6 +30,12 @@ def beli_tiket(request):
 def list_waktu_stadium(request):
     return render(request, 'list_waktu_stadium.html')
 
+def buat_pertandingan_antar_2tim(request):
+    return render(request, 'buat_pertandingan_antar_2tim.html')
+
+def list_pertandingan(request):
+    return render(request, 'list_pertandingan.html')
+
 def pilih_pertandingan(request):
     return render(request, 'pilih_pertandingan.html')
 
