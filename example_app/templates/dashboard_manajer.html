@@ -1,16 +1,55 @@
-{% load static tailwind_tags %}
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dashboard</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body>
-        <nav class="bg-white shadow-lg border-gray-200">
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Dashboard</title>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+{% endblock meta %} {% block content %}
+<div class="max-w-7xl mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Profil User</h1>
+    <div class="bg-white shadow-lg p-4 rounded-lg">
+        <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/100x100" alt="Profile Picture" class="w-20 h-20 rounded-full mr-4" />
+            <div>
+                <div class="text-2xl font-bold">Roberto De Zerbi</div>
+                <div class="text-gray-500">Manajer</div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <div class="text-lg font-bold mb-2">Informasi Pribadi</div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Nama Depan:</div>
+                    <div class="w-2/3">Roberto</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Nama Belakang:</div>
+                    <div class="w-2/3">De Zerbi</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Email:</div>
+                    <div class="w-2/3">de.zerbi@example.com</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">No.HP:</div>
+                    <div class="w-2/3">0834568872</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Alamat:</div>
+                    <div class="w-2/3">Jl. Pegangsaan No.65, Jakarta Pusat</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Status:</div>
+                    <div class="w-2/3">Mahasiswa</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white mt-5 shadow-md p-4 rounded-lg text-center">
+        <h1 class="text-xl font-bold mb-4">Belum Membuat Tim</h1>
+    </div>
+</div>
+{% endblock content %}
+<!-- <nav class="bg-white shadow-lg border-gray-200">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <div class="flex flex-wrap">
                     <img
@@ -67,50 +106,4 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-        <div class="max-w-7xl mx-auto p-4">
-            <h1 class="text-2xl font-bold mb-4">Profil User</h1>
-            <div class="bg-white shadow-lg p-4 rounded-lg">
-                <div class="flex items-center mb-4">
-                    <img src="https://via.placeholder.com/100x100" alt="Profile Picture" class="w-20 h-20 rounded-full mr-4" />
-                    <div>
-                        <div class="text-2xl font-bold">Roberto De Zerbi</div>
-                        <div class="text-gray-500">Manajer</div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <div class="text-lg font-bold mb-2">Informasi Pribadi</div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-1/3">Nama Depan:</div>
-                            <div class="w-2/3">Roberto</div>
-                        </div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-1/3">Nama Belakang:</div>
-                            <div class="w-2/3">De Zerbi</div>
-                        </div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-1/3">Email:</div>
-                            <div class="w-2/3">de.zerbi@example.com</div>
-                        </div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-1/3">No.HP:</div>
-                            <div class="w-2/3">0834568872</div>
-                        </div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-1/3">Alamat:</div>
-                            <div class="w-2/3">Jl. Pegangsaan No.65, Jakarta Pusat</div>
-                        </div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-1/3">Status:</div>
-                            <div class="w-2/3">Mahasiswa</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white mt-5 shadow-md p-4 rounded-lg text-center">
-                <h1 class="text-xl font-bold mb-4">Belum Membuat Tim</h1>
-            </div>
-        </div>
-    </body>
-</html>
+        </nav> -->
