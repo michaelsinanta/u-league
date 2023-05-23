@@ -16,7 +16,7 @@
 {% block content %}
 <style>
   div.default {
-    width: 1000px;
+    width: 1200px;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -25,7 +25,7 @@
 </style>
 <body style="background-color:beige ;">
   <br>
-  <h2 style="text-align:center ;">Ravens</h1> 
+  <h2 style="text-align:center ;">{{nama_tim}}</h1> 
   <br>
   <div class = "default" style="text-align: center;" >
     <br>
@@ -46,29 +46,23 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
+        {% for pemain in list_pemain%}
         <tr>
-          <th scope="row">Jim Smith</th>
-          <td>081234567890</td>
-          <td>03/05/2004</td>
-          <td>false</td>
-          <td>Penyerang</td>
-          <td>220660714</td>
-          <td>Diploma</td>
+          <th scope="row">{{pemain.nama_depan}}{{" "}}{{pemain.nama_belakang}}</th>
+          <td>{{pemain.nomor_hp}}</td>
+          <td>{{pemain.tgl_lahir}}</td>
+          <td>{{pemain.is_captain}}</td>
+          <td>{{pemain.posisi}}</td>
+          <td>{{pemain.npm}}</td>
+          <td>{{pemain.jenjang}}</td>
           <td>
+            {% if not pemain.is_captain %}
             <button type="button" class="btn btn-success">Make Captain</button>
+            {% endif %}
             <button type="button" class="btn btn-danger">Delete</button>
           </td>
         </tr>
-        <tr>
-          <th scope="row">...</th>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
@@ -81,7 +75,7 @@
           <th scope="col" colspan="8">Daftar Pelatih</th>
         </tr>
         <tr>
-          <th scope="col">Nama Pemain</th>
+          <th scope="col">Nama Pelatih</th>
           <th scope="col">No Hp</th>
           <th scope="col">Email</th>
           <th scope="col " colspan="2">Alamat</th>
@@ -90,26 +84,18 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
+        {% for pelatih in list_pelatih %}
         <tr>
-          <th scope="row">Franklin Lamp</th>
-          <td>081234567890</td>
-          <td>frank.lamp@rocketmail.com</td>
-          <td colspan="2">Birmingham, England</td>
-          <td colspan="2">Taktik</td>
+          <th scope="row">{{pelatih.nama_depan}}{{" "}}{{pelatih.nama_belakang}}</th>
+          <td>{{pelatih.nomor_hp}}</td>
+          <td>{{pelatih.email}}</td>
+          <td colspan="2">{{pelatih.alamat}}</td>
+          <td colspan="2">{{pelatih.spesialisasi}}</td>
           <td>
             <button type="button" class="btn btn-danger">Delete</button>
           </td>
         </tr>
-        <tr>
-          <th scope="row">...</th>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-          <td>...</td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
