@@ -63,10 +63,10 @@ def pengguna(request):
     return render(request, 'pengguna.html')
 
 def regis1(request):
-    return render(request, 'form_regis1.html')
+    return render(request, 'form_regis_manajer.html')
 
 def regis2(request):
-    return render(request, 'form_regis2.html')
+    return render(request, 'form_regis_panitia.html')
 
 def mulai_rapat(request):
     return render(request, 'mulai_rapat.html')

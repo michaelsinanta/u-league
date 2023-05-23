@@ -20,7 +20,7 @@ def get_user_role(username):
         if len(user_list) != 0:
             return 'Manajer'
     
-        # Check Courier
+        # Check Panitia
         cursor.execute(f'''
             SELECT *
             FROM PANITIA
@@ -30,7 +30,7 @@ def get_user_role(username):
         if len(user_list) != 0:
             return 'Panitia'
     
-        # Check Customer
+        # Check Penonton
         cursor.execute(f'''
             SELECT *
             FROM PENONTON
