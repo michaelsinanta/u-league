@@ -65,29 +65,13 @@ def register_manajer(request):
                     INSERT INTO USER_SYSTEM VALUES
                     ('{username}', '{password}');
                 ''')
-            except Exception:
+            except Exception as e:
                 return JsonResponse({
-                    "message":"Username already exists!",
+                    "message":str(e).split("\n")[0],
                     "status":409
                 })
 
             _id = uuid4()
-
-            check = True
-            while check:
-                cursor.execute(f'''
-                    SELECT *
-                    FROM NON_PEMAIN
-                    WHERE ID='{_id}';
-                ''')
-
-                check_id = dict_fetch_all(cursor)
-
-                if (len(check_id) == 0):
-                    check = False
-                else:
-                    _id = uuid4();
-            
             nama_depan = request.POST.get('fname')    
             nama_belakang = request.POST.get('lname')    
             nomor_hp = request.POST.get('nohp')    
@@ -133,26 +117,10 @@ def register_penonton(request):
                     INSERT INTO USER_SYSTEM VALUES
                     ('{username}', '{password}');
                 ''')
-            except Exception:
-                return JsonResponse({"message":"Username already exists", "status":409})
+            except Exception as e:
+                return JsonResponse({"message":str(e).split("\n")[0], "status":409})
                 
             _id = uuid4()
-
-            check = True
-            while check:
-                cursor.execute(f'''
-                    SELECT *
-                    FROM NON_PEMAIN
-                    WHERE ID='{_id}';
-                ''')
-
-                check_id = dict_fetch_all(cursor)
-
-                if (len(check_id) == 0):
-                    check = False
-                else:
-                    _id = uuid4();
-            
             nama_depan = request.POST.get('fname')    
             nama_belakang = request.POST.get('lname')    
             nomor_hp = request.POST.get('nohp')    
@@ -199,26 +167,11 @@ def register_panitia(request):
                     ('{username}', '{password}');
                 ''')
 
-                _id = uuid4()
             
-            except Exception:
-                return JsonResponse({"message":"Username already exists", "status":409})
+            except Exception as e:
+                return JsonResponse({"message":str(e).split("\n")[0], "status":409})
 
-            check = True
-            while check:
-                cursor.execute(f'''
-                    SELECT *
-                    FROM NON_PEMAIN
-                    WHERE ID='{_id}';
-                ''')
-
-                check_id = dict_fetch_all(cursor)
-
-                if (len(check_id) == 0):
-                    check = False
-                else:
-                    _id = uuid4();
-            
+            _id = uuid4()
             nama_depan = request.POST.get('fname')    
             nama_belakang = request.POST.get('lname')    
             nomor_hp = request.POST.get('nohp')    

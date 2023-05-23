@@ -97,7 +97,7 @@
               },
               success: function(response){
                 alert(response.message)
-                if(!response.status === 409) window.location.href = loginUrl
+                if(response.status === 200) window.location.href = loginUrl
               },
               error: function(response) {
                 console.log(response)

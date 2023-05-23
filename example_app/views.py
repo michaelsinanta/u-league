@@ -81,7 +81,15 @@ def peristiwa(request):
     return render(request, 'peristiwa.html')
 
 def register_tim(request):
-    return render(request, 'register_tim.html')
+    username = request.COOKIES['username']
+
+    role = get_user_role(username)
+    context = {
+        'user': {
+            'role': f'{role}',
+        }
+    }
+    return render(request, 'register_tim.html', context)
 
 def peminjaman_stadium(request):
     return render(request, 'peminjaman_stadium.html')
