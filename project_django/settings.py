@@ -32,14 +32,6 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
-TAILWIND_APP_NAME = 'theme'
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
-
-NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,9 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'example_app',
-    'tailwind',
-    'theme',
-    'django_browser_reload'
 ]
 
 MIDDLEWARE = [
@@ -58,7 +47,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django_browser_reload.middleware.BrowserReloadMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -89,13 +77,21 @@ WSGI_APPLICATION = 'project_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+DATABASE_URL = 'postgresql://postgres:1kkI0IRuPDKmfJNC1Ds8@containers-us-west-142.railway.app:5493/railway'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': '1kkI0IRuPDKmfJNC1Ds8',
+        'HOST': 'containers-us-west-142.railway.app',
+        'PORT': '5493',
+        'CONN_MAX_AGE': 600
     }
 }
 
+# Set database settings automatically using DATABASE_URL.
 if PRODUCTION:
     DATABASES['default'] = dj_database_url.config(
         conn_max_age=600, ssl_require=True
@@ -135,7 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'theme/static/'
+STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
