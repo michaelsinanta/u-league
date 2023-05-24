@@ -11,7 +11,8 @@ def index(request):
     context = {
         'user': {
             'role': f'{role}',
-        }
+        },
+        'username':username
     }
 
     return render(request, 'index.html', context)
