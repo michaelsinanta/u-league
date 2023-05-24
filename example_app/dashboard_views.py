@@ -58,9 +58,9 @@ def dashboard(request):
     elif role == "Panitia":
         with connection.cursor() as cursor:
             cursor.execute(f'''
-                SELECT N.nama_depan, N.nama_belakang, N.nomor_hp, N.email, N.alamat
-                FROM NON_PEMAIN AS N, PANITIA AS P
-                WHERE P.username = '{username}' AND P.id_panitia = N.id;
+                SELECT N.nama_depan, N.nama_belakang, N.nomor_hp, N.email, N.alamat, S.status, P.jabatan
+                FROM NON_PEMAIN AS N, PANITIA AS P, STATUS_NON_PEMAIN AS S
+                WHERE P.username = '{username}' AND P.id_panitia = N.id AND N.id = S.ID_Non_Pemain;
             ''')
             user_list = dict_fetch_all(cursor)
 
