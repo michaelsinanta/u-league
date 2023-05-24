@@ -1,16 +1,19 @@
-{% extends 'base.html' %} {% load static %} {% block meta %}
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
 <title>Dashboard</title>
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-{% endblock meta %} {% block content %}
+{% endblock meta %}
+{% block content %}
 <div class="max-w-7xl mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Profil User</h1>
     <div class="bg-white shadow-lg p-4 rounded-lg">
         <div class="flex items-center mb-4">
             <img src="https://via.placeholder.com/100x100" alt="Profile Picture" class="w-20 h-20 rounded-full mr-4" />
             <div>
-                <div class="text-2xl font-bold">Roberto De Zerbi</div>
+                <div class="text-2xl font-bold">{{ user_list.0.nama_depan }} {{ user_list.0.nama_belakang }}</div>
                 <div class="text-gray-500">Manajer</div>
             </div>
         </div>
@@ -19,23 +22,23 @@
                 <div class="text-lg font-bold mb-2">Informasi Pribadi</div>
                 <div class="flex items-center mb-2">
                     <div class="w-1/3">Nama Depan:</div>
-                    <div class="w-2/3">Roberto</div>
+                    <div class="w-2/3">{{ user_list.0.nama_depan }}</div>
                 </div>
                 <div class="flex items-center mb-2">
                     <div class="w-1/3">Nama Belakang:</div>
-                    <div class="w-2/3">De Zerbi</div>
+                    <div class="w-2/3">{{ user_list.0.nama_belakang }}</div>
                 </div>
                 <div class="flex items-center mb-2">
                     <div class="w-1/3">Email:</div>
-                    <div class="w-2/3">de.zerbi@example.com</div>
+                    <div class="w-2/3">{{ user_list.0.email }}</div>
                 </div>
                 <div class="flex items-center mb-2">
                     <div class="w-1/3">No.HP:</div>
-                    <div class="w-2/3">0834568872</div>
+                    <div class="w-2/3">{{ user_list.0.nomor_hp }}</div>
                 </div>
                 <div class="flex items-center mb-2">
                     <div class="w-1/3">Alamat:</div>
-                    <div class="w-2/3">Jl. Pegangsaan No.65, Jakarta Pusat</div>
+                    <div class="w-2/3">{{ user_list.0.alamat }}</div>
                 </div>
                 <div class="flex items-center mb-2">
                     <div class="w-1/3">Status:</div>
@@ -49,60 +52,3 @@
     </div>
 </div>
 {% endblock content %}
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <div class="flex flex-wrap">
-                    <img
-                        src="https://user-images.githubusercontent.com/97111982/236660495-6b02388b-9442-40d6-88a5-1eeae9f05d05.png"
-                        width="65"
-                        alt="" />
-                    <span class="self-center text-2xl font-bold whitespace-nowrap text-black">U-League</span>
-                </div>
-                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                    <ul
-                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
-                        <li>
-                            <a
-                                href="#"
-                                class="block py-2 pl-3 pr-4 text-sky-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                                >Dashboard</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                class="block py-2 pl-3 pr-4 text-sky-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                                >Mengelola Tim</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                class="block py-2 pl-3 pr-4 text-sky-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                                >Peminjaman Stadium</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                class="block py-2 pl-3 pr-4 text-sky-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                                >List Pertandingan</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                class="block py-2 pl-3 pr-4 text-sky-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                                >History Rapat</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                class="block py-2 pl-3 pr-4 text-sky-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                                >Logout</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav> -->

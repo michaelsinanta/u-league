@@ -25,14 +25,23 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th>A VS B</th>
-        <th>Stadium GBK</th>
-        <th>5 Juli 2023, 07.00 - 09.00</th>
-        <th>
-            <button type="button" class="btn btn-primary">Mulai Rapat</button>
-        </th>
-    </tr>
+      {% for p in pertandingans %}
+      <tr>
+          <th>{{ p.team_names }}</th>
+          <th>{{ p.stadium_name }}</th>
+          <th>{{ p.start_datetime }}</th>
+          <th>
+              <form method="post" action="{% url 'example_app:mulai_rapat' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="id_pertandingan" value="{{ p.id_pertandingan }}">
+                  <input type="hidden" name="team_names" value="{{ p.team_names }}">
+                  <input type="hidden" name="stadium_name" value="{{ p.stadium_name }}">
+                  <input type="hidden" name="start_datetime" value="{{ p.start_datetime }}">
+                  <button type="submit" class="btn btn-primary">Mulai Rapat</button>
+              </form>
+          </th>
+      </tr>
+      {% endfor %}      
     </tbody>
 </table>
 <script
