@@ -2,7 +2,7 @@ from django.urls import path
 from example_app.views import *
 from example_app.cru_pengguna_views import login_user, logout_user, show_register, form_manajer, form_penonton, form_panitia, register_manajer, register_panitia, register_penonton
 from example_app.dashboard_views import dashboard
-from example_app.cru_peminjaman_stadium_views import peminjaman_stadium
+from example_app.cru_peminjaman_stadium_views import peminjaman_stadium, list_waktu_peminjaman_stadium
 from example_app.cr_mulai_rapat_views import mulai_rapat, rapat
 from example_app.cru_manajer_views import show_tim, remove_pemain
 
@@ -35,6 +35,7 @@ urlpatterns = [
     path('peristiwa', peristiwa, name='peristiwa'),
     path('register-tim', register_tim, name='register_tim'),
     path('peminjaman-stadium', peminjaman_stadium, name='peminjaman_stadium'),
+    path('list-waktu-peminjaman-stadium', list_waktu_peminjaman_stadium, name='list_waktu_peminjaman_stadium'),
     path('my-team', show_tim, name='show_tim'),
     path('remove-pemain/<str:id>', remove_pemain, name='remove_pemain'),
     path('add-manajer', register_manajer, name='register_manajer'),
