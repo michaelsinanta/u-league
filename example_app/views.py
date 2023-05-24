@@ -5,7 +5,7 @@ def index(request):
     username = request.COOKIES.get('username', None)
 
     if username is None:
-        return render(request, 'index.html', {}) 
+        return render(request, 'landing_page.html', {}) 
 
     role = get_user_role(username)
     context = {

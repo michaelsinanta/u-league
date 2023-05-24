@@ -9,10 +9,10 @@ from example_app.cru_manajer_views import show_tim, remove_pemain, add_tim, add_
 app_name = 'example_app'
 
 urlpatterns = [
-    path('', landing_page, name='landing-page'),
+    path('', index, name='index'),
     path('login/', login_user, name='login_user'),
     path('logout/', logout_user, name='logout_user'),
-    path('landing-page/', index, name='index'),
+    path('landing-page/', landing_page, name='landing-page'),
     path('dashboard', dashboard, name='dashboard'),
     path('dashboard-manajer', dashboard_manajer, name='dashboard_manajer'),
     path('dashboard-penonton', dashboard_penonton, name='dashboard_penonton'),
