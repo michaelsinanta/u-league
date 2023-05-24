@@ -13,14 +13,18 @@
   <div style="text-align: center">
     <h1>RAPAT PERTANDINGAN {{ team_names }}</h1>
   </div>
-  <form method="post" action="{% url 'example_app:rapat' %}">
+  <form
+    method="post"
+    action="{% url 'example_app:rapat' %}"
+    onsubmit="return validateForm();"
+  >
     {% csrf_token %}
     <input type="hidden" name="team_names" value="{{ team_names }}" />
     <input type="hidden" name="stadium_name" value="{{ stadium_name }}" />
     <input type="hidden" name="start_datetime" value="{{ start_datetime }}" />
     <input type="hidden" name="id_pertandingan" value="{{ id_pertandingan }}" />
     <label for="isi_rapat">Isi Rapat:</label><br />
-    <textarea name="isi_rapat" rows="4" cols="105"></textarea><br /><br />
+    <textarea id="isi_rapat" name="isi_rapat" rows="4" cols="105"></textarea>
     <div style="text-align: center">
       <input type="submit" value="Submit" class="btn btn-primary" />
     </div>
