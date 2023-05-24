@@ -41,3 +41,37 @@ def get_user_role(username):
             return 'Penonton'      
     
     return 'none'
+
+def get_user_id(username):
+    with connection.cursor() as cursor:
+        # Check Manajer
+        cursor.execute(f'''
+            SELECT id_manajer
+            FROM MANAJER
+            WHERE username='{username}';
+        ''')
+        result = cursor.fetchone()
+        if result is not None:
+            return result[0]
+        
+        # Check Panitia
+        cursor.execute(f'''
+            SELECT id_panitia
+            FROM PANITIA
+            WHERE username='{username}';
+        ''')
+        result = cursor.fetchone()
+        if result is not None:
+            return result[0]
+    
+        # Check Penonton
+        cursor.execute(f'''
+            SELECT id_penonton
+            FROM PENONTON
+            WHERE username='{username}';
+        ''')
+        result = cursor.fetchone()
+        if result is not None:
+            return result[0]    
+    
+    return 'none'

@@ -55,13 +55,13 @@
                     <!-- Manager Navbar -->
                     {% if user.role == 'Manajer' or user.role == 'manajer' %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="{% url 'example_app:dashboard' %}">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'example_app:show_tim' %}">Mengelola Tim</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Peminjaman Stadium</a>
+                        <a class="nav-link" href="{% url 'example_app:peminjaman_stadium' %}">Peminjaman Stadium</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">List Pertandingan</a>
@@ -76,7 +76,7 @@
                     <!-- Penonton Navbar -->
                     {% elif user.role == 'Penonton' or user.role == 'penonton' %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="{% url 'example_app:dashboard' %}">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pembelian Tiket</a>
@@ -91,10 +91,10 @@
                     <!-- Panitia Navbar -->
                     {% elif user.role == 'Panitia' or user.role == 'panitia' %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="{% url 'example_app:dashboard' %}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Rapat</a>
+                        <a class="nav-link" href="{% url 'example_app:mulai_rapat' %}">Rapat</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Manage Pertandingan</a>

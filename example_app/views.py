@@ -16,7 +16,6 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-
 def dashboard_manajer(request):
     return render(request, 'dashboard_manajer.html')
   
@@ -82,9 +81,6 @@ def peristiwa(request):
 
 def register_tim(request):
     return render(request, 'register_tim.html')
-
-def peminjaman_stadium(request):
-    return render(request, 'peminjaman_stadium.html')
 
 def my_team(request):
     return render(request, 'my_team.html')

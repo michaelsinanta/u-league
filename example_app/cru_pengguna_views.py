@@ -37,7 +37,7 @@ def show_register(request):
     return render(request, 'pengguna.html', {})
 
 def logout_user(request):
-    response = HttpResponseRedirect('/register')
+    response = HttpResponseRedirect('/landing-page')
     response.delete_cookie('username')
     response.delete_cookie('password')
     return response
