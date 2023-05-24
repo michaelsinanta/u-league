@@ -29,7 +29,7 @@ def mulai_rapat(request):
         return HttpResponseRedirect(redirect_url)
     
     with connection.cursor() as cursor:
-        cursor.execute(f"""
+        cursor.execute("""
             SELECT T.id_pertandingan AS id_pertandingan, string_agg(T.nama_tim, ' vs ') AS team_names, S.nama AS stadium_name, P.start_datetime
             FROM PERTANDINGAN AS P
             JOIN STADIUM AS S ON P.stadium = S.id_stadium

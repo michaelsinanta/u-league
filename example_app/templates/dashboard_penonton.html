@@ -46,7 +46,30 @@
         </div>
     </div>
     <div class="bg-white mt-5 shadow-md p-4 rounded-lg text-center">
+        {% if not is_available %}
         <h1 class="text-xl font-bold mb-4">Belum Memesan Pertandingan</h1>
+        {% else %}
+        <table class="table" style="text-align: center;">
+            <thead>
+            <tr>
+                <th colspan="2">Pertandingan Tersedia</th>
+            </tr>
+            <tr>
+                <th>Tim Bertanding</th>
+                <th>Tanggal dan Waktu</th>
+            </tr>
+            </thead>
+            <tbody>
+              {% for p in pertandingan %}
+              <tr>
+                  <th>{{ p.nama_tim }}</th>
+                  <th>{{ p.start_datetime }}</th>
+                  </th>
+              </tr>
+              {% endfor %}      
+            </tbody>
+        </table>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}

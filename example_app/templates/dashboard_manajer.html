@@ -48,7 +48,44 @@
         </div>
     </div>
     <div class="bg-white mt-5 shadow-md p-4 rounded-lg text-center">
+        {% if not is_tim %}
         <h1 class="text-xl font-bold mb-4">Belum Membuat Tim</h1>
+        {% else %}
+        <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th scope="col" colspan="8">{{nama_tim}}</th>
+              </tr>
+              <tr>
+                <th scope="col" colspan="8">Daftar Pemain</th>
+              </tr>
+              <tr>
+                <th scope="col">Nama Pemain</th>
+                <th scope="col">No Hp</th>
+                <th scope="col">Tanggal Lahir</th>
+                <th scope="col">Is Captain</th>
+                <th scope="col">Posisi</th>
+                <th scope="col">NPM</th>
+                <th scope="col">Jenjang</th>
+                <th scope="col">Is Captain</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              {% for pemain in list_pemain%}
+              <tr>
+                <th scope="row">{{pemain.nama_depan}}{{" "}}{{pemain.nama_belakang}}</th>
+                <td>{{pemain.nomor_hp}}</td>
+                <td>{{pemain.tgl_lahir}}</td>
+                <td>{{pemain.is_captain}}</td>
+                <td>{{pemain.posisi}}</td>
+                <td>{{pemain.npm}}</td>
+                <td>{{pemain.jenjang}}</td>
+                <td>{{pemain.is_captain}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
     </div>
 </div>
 {% endblock content %}

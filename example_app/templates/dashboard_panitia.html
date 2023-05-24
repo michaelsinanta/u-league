@@ -45,7 +45,30 @@
         </div>
     </div>
     <div class="bg-white mt-5 shadow-md p-4 rounded-lg text-center">
+        {% if not available_rapat %}
         <h1 class="text-xl font-bold mb-4">Belum Ada Rapat</h1>
+        {% else %}
+        <table class="table" style="text-align: center;">
+            <thead>
+            <tr>
+                <th colspan="2">Pertandingan Tersedia</th>
+            </tr>
+            <tr>
+                <th>Tim Bertanding</th>
+                <th>Tanggal dan Waktu</th>
+            </tr>
+            </thead>
+            <tbody>
+              {% for p in daftar_rapat %}
+              <tr>
+                  <th>{{ p.team_names }}</th>
+                  <th>{{ p.start_datetime }}</th>
+                  </th>
+              </tr>
+              {% endfor %}      
+            </tbody>
+        </table>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
