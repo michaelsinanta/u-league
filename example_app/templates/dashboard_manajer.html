@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Dashboard</title>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+{% endblock meta %} {% block content %}
+<div class="max-w-7xl mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Profil User</h1>
+    <div class="bg-white shadow-lg p-4 rounded-lg">
+        <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/100x100" alt="Profile Picture" class="w-20 h-20 rounded-full mr-4" />
+            <div>
+                <div class="text-2xl font-bold">{{ user_list.0.nama_depan }} {{ user_list.0.nama_belakang }}</div>
+                <div class="text-gray-500">Manajer</div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <div class="text-lg font-bold mb-2">Informasi Pribadi</div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Nama Depan:</div>
+                    <div class="w-2/3">{{ user_list.0.nama_depan }}</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Nama Belakang:</div>
+                    <div class="w-2/3">{{ user_list.0.nama_belakang }}</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Email:</div>
+                    <div class="w-2/3">{{ user_list.0.email }}</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">No.HP:</div>
+                    <div class="w-2/3">{{ user_list.0.nomor_hp }}</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Alamat:</div>
+                    <div class="w-2/3">{{ user_list.0.alamat }}</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Status:</div>
+                    <div class="w-2/3">{{ user_list.0.status }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white mt-5 shadow-md p-4 rounded-lg text-center">
+        {% if not is_tim %}
+        <h1 class="text-xl font-bold mb-4">Belum Membuat Tim</h1>
+        {% else %}
+        <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th scope="col" colspan="8">{{nama_tim}}</th>
+              </tr>
+              <tr>
+                <th scope="col" colspan="8">Daftar Pemain</th>
+              </tr>
+              <tr>
+                <th scope="col">Nama Pemain</th>
+                <th scope="col">No Hp</th>
+                <th scope="col">Tanggal Lahir</th>
+                <th scope="col">Is Captain</th>
+                <th scope="col">Posisi</th>
+                <th scope="col">NPM</th>
+                <th scope="col">Jenjang</th>
+                <th scope="col">Is Captain</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              {% for pemain in list_pemain%}
+              <tr>
+                <th scope="row">{{pemain.nama_depan}}{{" "}}{{pemain.nama_belakang}}</th>
+                <td>{{pemain.nomor_hp}}</td>
+                <td>{{pemain.tgl_lahir}}</td>
+                <td>{{pemain.is_captain}}</td>
+                <td>{{pemain.posisi}}</td>
+                <td>{{pemain.npm}}</td>
+                <td>{{pemain.jenjang}}</td>
+                <td>{{pemain.is_captain}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
+    </div>
+</div>
+{% endblock content %}

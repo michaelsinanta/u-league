@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+=
+{% block meta %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Manage Pertandingan</title>
+{% endblock meta %}
+
+
+{% block content %}
+<div class='h-screen flex justify-center items-center'>
+    <div class='font-bold text-3xl text-center '>
+        <div>
+            <h1>
+                PERTANDINGAN BELUM LENGKAP!
+            </h1>
+            <h1>
+                KLIK TOMBOL NEXT UNTUK MEMBUAT PERTANDINGAN
+            </h1>
+        </div>
+        <div class='flex justify-center items-center'>
+            <button type='button' class="bg-slate-200 rounded w-1/2">
+                NEXT
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

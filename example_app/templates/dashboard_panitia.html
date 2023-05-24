@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Dashboard</title>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+{% endblock meta %} {% block content %}
+<div class="max-w-7xl mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Profil User</h1>
+    <div class="bg-white shadow-lg p-4 rounded-lg">
+        <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/100x100" alt="Profile Picture" class="w-20 h-20 rounded-full mr-4" />
+            <div>
+                <div class="text-2xl font-bold">Eric Cantona</div>
+                <div class="text-gray-500">Panitia</div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <div class="text-lg font-bold mb-2">Informasi Personal</div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Nama Depan:</div>
+                    <div class="w-2/3">Eric</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Nama Belakang:</div>
+                    <div class="w-2/3">Cantona</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Email:</div>
+                    <div class="w-2/3">eric.cantona@example.com</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">No HP:</div>
+                    <div class="w-2/3">0834568872</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Alamat:</div>
+                    <div class="w-2/3">Jl. Pegangsaan No.65, Jakarta Pusat</div>
+                </div>
+                <div class="flex items-center mb-2">
+                    <div class="w-1/3">Status:</div>
+                    <div class="w-2/3">Tenaga Pendidik</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white mt-5 shadow-md p-4 rounded-lg text-center">
+        {% if not available_rapat %}
+        <h1 class="text-xl font-bold mb-4">Belum Ada Rapat</h1>
+        {% else %}
+        <table class="table" style="text-align: center;">
+            <thead>
+            <tr>
+                <th colspan="2">Pertandingan Tersedia</th>
+            </tr>
+            <tr>
+                <th>Tim Bertanding</th>
+                <th>Tanggal dan Waktu</th>
+            </tr>
+            </thead>
+            <tbody>
+              {% for p in daftar_rapat %}
+              <tr>
+                  <th>{{ p.team_names }}</th>
+                  <th>{{ p.start_datetime }}</th>
+                  </th>
+              </tr>
+              {% endfor %}      
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
