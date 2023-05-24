@@ -6,6 +6,8 @@ from example_app.r_list_pertandingan_views import get_list_pertandingan
 from example_app.cru_peminjaman_stadium_views import peminjaman_stadium
 from example_app.cr_mulai_rapat_views import mulai_rapat, rapat
 from example_app.cru_manajer_views import show_tim, remove_pemain
+from example_app.cr_tiket_views import pilih_stadium, pilih_pertandingan, beli_tiket
+from example_app.r_history_rapat_views import history_rapat, lihat_laporan_rapat
 
 app_name = 'example_app'
 
@@ -18,14 +20,16 @@ urlpatterns = [
     path('dashboard-manajer', dashboard_manajer, name='dashboard_manajer'),
     path('dashboard-penonton', dashboard_penonton, name='dashboard_penonton'),
     path('dashboard-panitia', dashboard_panitia, name='dashboard_panitia'),
-    path('beli-tiket', beli_tiket, name='beli_tiket'),
-    path('pilih-pertandingan', pilih_pertandingan, name='pilih_pertandingan'),
+    path('beli-tiket/<str:id_pertandingan>', beli_tiket, name='beli_tiket'),
+    path('pilih-pertandingan/<str:id_stadium>', pilih_pertandingan, name='pilih_pertandingan'),
+    path('pilih-stadium', pilih_stadium, name='pilih_stadium'),
     path('manage-pertandingan/', manage_pertanding, name='manage-pertandingan'),
     path('pembuatan-pertandingan', pembuatan_pertandingan, name='pembuatan_pertandingan'),
     path('list-waktu-stadium', list_waktu_stadium, name='list_waktu_stadium'),
     path('buat-pertandingan', buat_pertandingan_antar_2tim, name='buat_pertandingan_antar_2tim'),
     path('list-pertandingan', get_list_pertandingan, name='list_pertandingan'),
     path('history-rapat', history_rapat, name='history_rapat'),
+    path('lihat-laporan-rapat/<str:id_pertandingan>', lihat_laporan_rapat, name='lihat_laporan_rapat'),
     path('register', show_register , name='show_register'),
     path('mulai-rapat', mulai_rapat, name='mulai_rapat'),
     path('register-manajer', form_manajer, name='form_manajer'),

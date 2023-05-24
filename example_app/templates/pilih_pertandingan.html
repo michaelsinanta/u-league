@@ -46,20 +46,15 @@
                 </tr>
             </thead>
             <tbody>
+                {% for i in data %}
                 <tr>
-                    <td>A</td>
-                    <td>B</td>
+                    <td>{{ i.tim_1 }}</td>
+                    <td>{{ i.tim_2 }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary">Pilih</a>
+                        <a class="btn btn-primary"  id="{{i.id_pertandingan}}" onclick="handlePilihPertandingan(this.id)">Pilih</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>C</td>
-                    <td>D</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Pilih</a>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
 
@@ -69,4 +64,11 @@
             crossorigin="anonymous"></script>
     </body>
     {% endblock content %}
+
+<script>
+    function handlePilihPertandingan(id){
+        var create_tiket_url_get = `/beli-tiket/${id}`
+        window.location.href = create_tiket_url_get
+    }
+</script>
 </html>
