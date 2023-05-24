@@ -41,14 +41,12 @@
                 </tr>   
             </thead>
             <tbody class="table-group-divider">
+                {% for p in peminjamans %}
                 <tr>
-                    <td>Ankara Stadium</td>
-                    <td>07/05/2022</td>
+                    <td>{{p.nama}}</td>
+                    <td>{{p.start_datetime}}</td>
                 </tr>
-                <tr>
-                    <td>...</td>
-                    <td>...</td>
-                </tr>
+                {% endfor %}
             </tbody>
             <tfoot>
                 <td colspan="2">
