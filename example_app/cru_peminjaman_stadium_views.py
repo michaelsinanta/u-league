@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 
 def peminjaman_stadium(request):
-    username = request.session['info'].get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -52,7 +52,7 @@ def peminjaman_stadium(request):
     return render(request, 'peminjaman_stadium.html', context)
 
 def list_waktu_peminjaman_stadium(request):
-    username = request.session['info'].get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
