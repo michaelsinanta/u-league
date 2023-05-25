@@ -3,11 +3,11 @@ from example_app.views import *
 from example_app.cru_pengguna_views import login_user, logout_user, show_register, form_manajer, form_penonton, form_panitia, register_manajer, register_panitia, register_penonton
 from example_app.dashboard_views import dashboard
 from example_app.r_list_pertandingan_views import get_list_pertandingan
-from example_app.cru_peminjaman_stadium_views import peminjaman_stadium
-from example_app.cr_mulai_rapat_views import mulai_rapat, rapat
-from example_app.cru_manajer_views import show_tim, remove_pemain
 from example_app.cr_tiket_views import pilih_stadium, pilih_pertandingan, beli_tiket
 from example_app.r_history_rapat_views import history_rapat, lihat_laporan_rapat
+from example_app.cru_peminjaman_stadium_views import peminjaman_stadium, list_waktu_peminjaman_stadium
+from example_app.cr_mulai_rapat_views import mulai_rapat, rapat
+from example_app.cru_manajer_views import show_tim, remove_pemain, add_tim, add_pemain, make_captain, add_pelatih, remove_pelatih
 
 app_name = 'example_app'
 
@@ -40,9 +40,15 @@ urlpatterns = [
     path('peristiwa', peristiwa, name='peristiwa'),
     path('register-tim', register_tim, name='register_tim'),
     path('peminjaman-stadium', peminjaman_stadium, name='peminjaman_stadium'),
+    path('list-waktu-peminjaman-stadium', list_waktu_peminjaman_stadium, name='list_waktu_peminjaman_stadium'),
     path('my-team', show_tim, name='show_tim'),
-    path('remove-pemain/<str:id>', remove_pemain, name='remove_pemain'),
+    path('remove-pemain/<str:id_pemain>', remove_pemain, name='remove_pemain'),
     path('add-manajer', register_manajer, name='register_manajer'),
     path('add-penonton', register_penonton, name='register_penonton'),
-    path('add-panitia', register_panitia, name='register_panitia')
+    path('add-panitia', register_panitia, name='register_panitia'),
+    path('add-tim', add_tim, name='add_tim'),
+    path('add-pemain', add_pemain, name='add_pemain'),
+    path('make-captain/<str:id_pemain>', make_captain, name='make_captain'),
+    path('add-pelatih', add_pelatih, name='add_pelatih'),
+    path('remove-pelatih/<str:id_pelatih>', remove_pelatih, name='remove_pelatih')
 ]

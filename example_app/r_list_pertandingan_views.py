@@ -41,7 +41,7 @@ def get_stadium(tim_bertanding, list_stadium):
     return tim_bertanding
 
 def get_list_pertandingan(request):
-    username = request.COOKIES.get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 

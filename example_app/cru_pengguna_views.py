@@ -3,7 +3,7 @@ from django.db import connection
 from django.shortcuts import redirect, render
 from example_app.utils import dict_fetch_all
 from django.views.decorators.csrf import csrf_exempt
-from uuid import uuid4;
+from uuid import uuid4
 from django.views.decorators.csrf import csrf_exempt
 
 def login_user(request):
@@ -21,25 +21,25 @@ def login_user(request):
             ''')
             user_list = dict_fetch_all(cursor)
         if len(user_list) != 0:  # User found
-            response.set_cookie('username', username)
-            response.set_cookie('password', password)
+            request.session.cycle_key()
+            request.session['info'] = {
+                'username': username,
+                'password': password
+            }
             response.status_code = 200
             return response
             
         else:  # User not found
-            response.delete_cookie('username')
-            response.delete_cookie('password')
             response.status_code = 404
             return response
-    return HttpResponse(status=404)
+    return HttpResponse(status=406)
 
 def show_register(request):
     return render(request, 'pengguna.html', {})
 
 def logout_user(request):
     response = HttpResponseRedirect('/landing-page')
-    response.delete_cookie('username')
-    response.delete_cookie('password')
+    request.session.flush()
     return response
 
 def form_manajer(request):
@@ -65,29 +65,13 @@ def register_manajer(request):
                     INSERT INTO USER_SYSTEM VALUES
                     ('{username}', '{password}');
                 ''')
-            except Exception:
+            except Exception as e:
                 return JsonResponse({
-                    "message":"Username already exists!",
+                    "message":str(e).split("\n")[0],
                     "status":409
                 })
 
             _id = uuid4()
-
-            check = True
-            while check:
-                cursor.execute(f'''
-                    SELECT *
-                    FROM NON_PEMAIN
-                    WHERE ID='{_id}';
-                ''')
-
-                check_id = dict_fetch_all(cursor)
-
-                if (len(check_id) == 0):
-                    check = False
-                else:
-                    _id = uuid4();
-            
             nama_depan = request.POST.get('fname')    
             nama_belakang = request.POST.get('lname')    
             nomor_hp = request.POST.get('nohp')    
@@ -133,26 +117,10 @@ def register_penonton(request):
                     INSERT INTO USER_SYSTEM VALUES
                     ('{username}', '{password}');
                 ''')
-            except Exception:
-                return JsonResponse({"message":"Username already exists", "status":409})
+            except Exception as e:
+                return JsonResponse({"message":str(e).split("\n")[0], "status":409})
                 
             _id = uuid4()
-
-            check = True
-            while check:
-                cursor.execute(f'''
-                    SELECT *
-                    FROM NON_PEMAIN
-                    WHERE ID='{_id}';
-                ''')
-
-                check_id = dict_fetch_all(cursor)
-
-                if (len(check_id) == 0):
-                    check = False
-                else:
-                    _id = uuid4();
-            
             nama_depan = request.POST.get('fname')    
             nama_belakang = request.POST.get('lname')    
             nomor_hp = request.POST.get('nohp')    
@@ -199,26 +167,11 @@ def register_panitia(request):
                     ('{username}', '{password}');
                 ''')
 
-                _id = uuid4()
             
-            except Exception:
-                return JsonResponse({"message":"Username already exists", "status":409})
+            except Exception as e:
+                return JsonResponse({"message":str(e).split("\n")[0], "status":409})
 
-            check = True
-            while check:
-                cursor.execute(f'''
-                    SELECT *
-                    FROM NON_PEMAIN
-                    WHERE ID='{_id}';
-                ''')
-
-                check_id = dict_fetch_all(cursor)
-
-                if (len(check_id) == 0):
-                    check = False
-                else:
-                    _id = uuid4();
-            
+            _id = uuid4()
             nama_depan = request.POST.get('fname')    
             nama_belakang = request.POST.get('lname')    
             nomor_hp = request.POST.get('nohp')    

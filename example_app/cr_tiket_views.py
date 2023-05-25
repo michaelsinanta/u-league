@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 def pilih_stadium(request) :
-    username = request.COOKIES.get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -33,7 +33,7 @@ def pilih_stadium(request) :
     return render(request, 'pilih_stadium.html', context)
 
 def pilih_pertandingan(request, id_stadium) :
-    username = request.COOKIES.get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -75,7 +75,7 @@ def pilih_pertandingan(request, id_stadium) :
 
 @csrf_exempt
 def beli_tiket(request, id_pertandingan) :
-    username = request.COOKIES.get('username', None)
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 

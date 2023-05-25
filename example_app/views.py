@@ -2,16 +2,17 @@ from django.shortcuts import render
 from example_app.utils import get_user_role
 
 def index(request):
-    username = request.COOKIES.get('username', None)
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
-        return render(request, 'index.html', {}) 
+        return render(request, 'landing_page.html', {}) 
 
     role = get_user_role(username)
     context = {
         'user': {
             'role': f'{role}',
-        }
+        },
+        'username':username
     }
 
     return render(request, 'index.html', context)
@@ -80,7 +81,15 @@ def peristiwa(request):
     return render(request, 'peristiwa.html')
 
 def register_tim(request):
-    return render(request, 'register_tim.html')
+    username = request.session['info'].get('username')
+
+    role = get_user_role(username)
+    context = {
+        'user': {
+            'role': f'{role}',
+        }
+    }
+    return render(request, 'register_tim.html', context)
 
 def my_team(request):
     return render(request, 'my_team.html')

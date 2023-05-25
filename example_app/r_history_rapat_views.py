@@ -8,7 +8,7 @@ from datetime import datetime
 from example_app.r_list_pertandingan_views import get_nama_tim_bertanding, get_stadium
 
 def history_rapat(request):
-    username = request.COOKIES.get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -75,8 +75,7 @@ def history_rapat(request):
     return render(request, 'history_rapat.html', context)
 
 def lihat_laporan_rapat(request, id_pertandingan) :
-    username = request.COOKIES.get('username')
-
+    username = request.session.get('info', {}).get('username', None)
     if username is None:
         return render(request, 'landing_page.html', {}) 
     

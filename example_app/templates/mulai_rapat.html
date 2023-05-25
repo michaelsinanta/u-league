@@ -29,7 +29,7 @@
       <tr>
           <th>{{ p.team_names }}</th>
           <th>{{ p.stadium_name }}</th>
-          <th>{{ p.start_datetime }}</th>
+          <th>{{ p.start_datetime_tampilan }}</th>
           <th>
               <form method="post" action="{% url 'example_app:mulai_rapat' %}">
                   {% csrf_token %}

@@ -3,10 +3,11 @@ from example_app.utils import get_user_role, dict_fetch_all, get_user_id
 from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-from datetime import datetime
+from datetime import datetime, timedelta
+import random
 
 def mulai_rapat(request):
-    username = request.COOKIES.get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -29,7 +30,7 @@ def mulai_rapat(request):
         return HttpResponseRedirect(redirect_url)
     
     with connection.cursor() as cursor:
-        cursor.execute(f"""
+        cursor.execute("""
             SELECT T.id_pertandingan AS id_pertandingan, string_agg(T.nama_tim, ' vs ') AS team_names, S.nama AS stadium_name, P.start_datetime
             FROM PERTANDINGAN AS P
             JOIN STADIUM AS S ON P.stadium = S.id_stadium
@@ -38,12 +39,18 @@ def mulai_rapat(request):
         """)
 
         pertandingans = dict_fetch_all(cursor)
-        context['pertandingans'] = pertandingans 
-    
+        for pertandingan in pertandingans:
+            start_datetime = pertandingan['start_datetime']
+            pertandingan['start_datetime_tampilan'] = start_datetime
+            formatted_datetime = datetime.strftime(start_datetime, "%Y-%m-%d")
+            pertandingan['start_datetime'] = formatted_datetime
+ 
+        context['pertandingans'] = pertandingans
+
     return render(request, 'mulai_rapat.html', context)
 
 def rapat(request):
-    username = request.COOKIES.get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -67,14 +74,16 @@ def rapat(request):
         stadium_name = request.POST.get('stadium_name')
         start_datetime = request.POST.get('start_datetime')
         id_pertandingan = request.POST.get('id_pertandingan')
-        username = request.COOKIES.get('username')
+        isi_rapat = request.POST.get('isi_rapat')
+        username = request.session['info'].get('username')
         perwakilan_panitia = get_user_id(username)
         team_names_split = team_names.split(" vs ")
         manajer_tim_a = get_manajer_id_by_team(team_names_split[0])
         manajer_tim_b = get_manajer_id_by_team(team_names_split[1])
-        datetime_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        isi_rapat = request.POST.get('isi_rapat')
-        response = HttpResponse()
+        start_datetime_obj = datetime.strptime(start_datetime, "%Y-%m-%d")
+        datetime_now = (start_datetime_obj - timedelta(days=3)).strftime("%Y-%m-%d")
+        random_time = datetime.now().replace(hour=random.randint(0, 23)).strftime("%H:%M:%S")
+        datetime_now += " " + random_time
         with connection.cursor() as cursor:
             cursor.execute(f"""
                 INSERT INTO Rapat (ID_Pertandingan, Datetime, Perwakilan_Panitia, Manajer_Tim_A, Manajer_Tim_B, Isi_Rapat) VALUES 
