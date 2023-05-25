@@ -8,6 +8,7 @@ from example_app.r_history_rapat_views import history_rapat, lihat_laporan_rapat
 from example_app.cru_peminjaman_stadium_views import peminjaman_stadium, list_waktu_peminjaman_stadium
 from example_app.cr_mulai_rapat_views import mulai_rapat, rapat
 from example_app.cru_manajer_views import show_tim, remove_pemain, add_tim, add_pemain, make_captain, add_pelatih, remove_pelatih
+from example_app.crud_pembuatan_pertandingan_views import show_pembuatan_pertandingan, show_list_waktu_stadium, buat_pertandingan, add_pertandingan
 
 app_name = 'example_app'
 
@@ -24,9 +25,9 @@ urlpatterns = [
     path('pilih-pertandingan/<str:id_stadium>', pilih_pertandingan, name='pilih_pertandingan'),
     path('pilih-stadium', pilih_stadium, name='pilih_stadium'),
     path('manage-pertandingan/', manage_pertanding, name='manage-pertandingan'),
-    path('pembuatan-pertandingan', pembuatan_pertandingan, name='pembuatan_pertandingan'),
-    path('list-waktu-stadium', list_waktu_stadium, name='list_waktu_stadium'),
-    path('buat-pertandingan', buat_pertandingan_antar_2tim, name='buat_pertandingan_antar_2tim'),
+    path('pembuatan-pertandingan', show_pembuatan_pertandingan, name='pembuatan_pertandingan'),
+    path('list-waktu-stadium', show_list_waktu_stadium, name='list_waktu_stadium'),
+    path('buat-pertandingan', buat_pertandingan, name='buat_pertandingan_antar_2tim'),
     path('list-pertandingan', get_list_pertandingan, name='list_pertandingan'),
     path('history-rapat', history_rapat, name='history_rapat'),
     path('lihat-laporan-rapat/<str:id_pertandingan>', lihat_laporan_rapat, name='lihat_laporan_rapat'),
@@ -50,5 +51,6 @@ urlpatterns = [
     path('add-pemain', add_pemain, name='add_pemain'),
     path('make-captain/<str:id_pemain>', make_captain, name='make_captain'),
     path('add-pelatih', add_pelatih, name='add_pelatih'),
-    path('remove-pelatih/<str:id_pelatih>', remove_pelatih, name='remove_pelatih')
+    path('remove-pelatih/<str:id_pelatih>', remove_pelatih, name='remove_pelatih'),
+    path('add_pertandingan', add_pertandingan, name='add_pertandingan')
 ]
