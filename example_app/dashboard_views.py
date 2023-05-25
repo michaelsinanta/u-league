@@ -2,9 +2,10 @@ from example_app.utils import get_user_role, dict_fetch_all
 from django.shortcuts import redirect, render
 from django.db import connection
 from datetime import datetime
+import requests
 
 def dashboard(request):
-    username = request.COOKIES.get('username', None)
+    username = request.session['info'].get('username')
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -13,7 +14,8 @@ def dashboard(request):
     context = {
         'user': {
             'role': f'{role}',
-        }
+        },
+        'photo': get_random_photo()
     }
 
     if role == "Manajer":
@@ -58,9 +60,9 @@ def dashboard(request):
     elif role == "Panitia":
         with connection.cursor() as cursor:
             cursor.execute(f'''
-                SELECT N.nama_depan, N.nama_belakang, N.nomor_hp, N.email, N.alamat
-                FROM NON_PEMAIN AS N, PANITIA AS P
-                WHERE P.username = '{username}' AND P.id_panitia = N.id;
+                SELECT N.nama_depan, N.nama_belakang, N.nomor_hp, N.email, N.alamat, S.status, P.jabatan
+                FROM NON_PEMAIN AS N, PANITIA AS P, STATUS_NON_PEMAIN AS S
+                WHERE P.username = '{username}' AND P.id_panitia = N.id AND N.id = S.ID_Non_Pemain;
             ''')
             user_list = dict_fetch_all(cursor)
 
@@ -82,9 +84,9 @@ def dashboard(request):
     elif role == "Penonton":
         with connection.cursor() as cursor:
             cursor.execute(f'''
-                SELECT N.nama_depan, N.nama_belakang, N.nomor_hp, N.email, N.alamat
-                FROM NON_PEMAIN AS N, PENONTON AS P
-                WHERE P.username = '{username}' AND P.id_penonton = N.id;
+                SELECT N.nama_depan, N.nama_belakang, N.nomor_hp, N.email, N.alamat, SP.status
+                FROM NON_PEMAIN AS N, PENONTON AS P, STATUS_NON_PEMAIN AS SP
+                WHERE P.username = '{username}' AND P.id_penonton = N.id AND N.ID=SP.ID_NON_PEMAIN;
             ''')
             user_list = dict_fetch_all(cursor)
 
@@ -130,3 +132,14 @@ def get_id_penonton(username):
         ''')
         result = cursor.fetchone();
         return result[0]
+    
+
+def get_random_photo():
+    url = 'https://picsum.photos/100/100' 
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        image_url = response.url
+        return image_url
+
+    return None
