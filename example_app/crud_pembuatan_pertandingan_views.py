@@ -53,7 +53,7 @@ def show_pembuatan_pertandingan(request):
     return render(request, 'pembuatan_pertandingan.html', context)
     
     
-def update_pertandingan(request):
+def update_pertandingan(request, id_pertandingan):
     if request.method == 'POST':
         wasit_utama = request.POST.get('wasit_utama')
         wasit_pembantu1 = request.POST.get('wasit_pembantu1')
@@ -61,17 +61,14 @@ def update_pertandingan(request):
         wasit_cadangan = request.POST.get('wasit_cadangan')
         nama_team1 = request.POST.get('nama_team1')
         nama_team2 = request.POST.get('nama_team2')
-        start_hours = request.POST.get('start_hours')
-        end_hours = request.POST.get('end_hours')
-        id_stadium = request.POST.get('id_stadium')
         id_pertandingan = request.POST.get('id_pertandingan')
 
     with connection.cursor() as cursor:
         cursor.execute(f"""
-            UPDATE WASIT_BERTUGAS SET posisi_wasit = wasit utama WHERE '{wasit_utama}' = id_wasit;
-            UPDATE WASIT_BERTUGAS SET posisi_wasit = hakim garis WHERE '{wasit_pembantu1}' = id_wasit;
-            UPDATE WASIT_BERTUGAS SET posisi_wasit = hakim garis WHERE '{wasit_pembantu2}' = id_wasit;
-            UPDATE WASIT_BERTUGAS SET posisi_wasit = wasit cadangan WHERE '{wasit_cadangan}' = id_wasit;
+            UPDATE WASIT_BERTUGAS SET posisi_wasit = 'wasit utama' WHERE '{wasit_utama}' = id_wasit;
+            UPDATE WASIT_BERTUGAS SET posisi_wasit = 'hakim garis' WHERE '{wasit_pembantu1}' = id_wasit;
+            UPDATE WASIT_BERTUGAS SET posisi_wasit = 'hakim garis' WHERE '{wasit_pembantu2}' = id_wasit;
+            UPDATE WASIT_BERTUGAS SET posisi_wasit = 'wasit cadangan' WHERE '{wasit_cadangan}' = id_wasit;
             UPDATE TIM_PERTANDINGAN SET nama_tim = '{nama_team1}' WHERE '{id_pertandingan}' = id_pertandingan;
             UPDATE TIM_PERTANDINGAN SET nama_tim = '{nama_team2}' WHERE '{id_pertandingan}' = id_pertandingan;
         """)
