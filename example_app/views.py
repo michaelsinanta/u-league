@@ -26,12 +26,6 @@ def landing_page(request):
 def login(request) :
     return render(request, 'login.html')
 
-def manage_pertanding(request) :
-    return render(request, 'manage_pertandingan.html')
-
-def pembuatan_pertandingan(request):
-    return render(request, 'pembuatan_pertandingan.html')
-
 def dashboard_penonton(request):
     return render(request, 'dashboard_penonton.html')
 
@@ -46,6 +40,21 @@ def pilih_stadium(request):
 
 def list_waktu_stadium(request):
     return render(request, 'list_waktu_stadium.html')
+
+def pembuatan_pertandingan(request):
+    
+    username = request.COOKIES.get('username', None)
+
+    if username is None:
+        return render(request, 'landing_page.html', {}) 
+
+    role = get_user_role(username)
+    context = {
+        'user': {
+            'role': f'{role}',
+        }
+    }
+    return render(request, 'pembuatan_pertandingan.html', context)
 
 def buat_pertandingan_antar_2tim(request):
     return render(request, 'buat_pertandingan_antar_2tim.html')
@@ -76,9 +85,6 @@ def rapat(request):
 
 def mulai_pertandingan(request):
     return render(request, 'mulai_pertandingan.html')
-
-def peristiwa(request):
-    return render(request, 'peristiwa.html')
 
 def register_tim(request):
     username = request.session['info'].get('username')

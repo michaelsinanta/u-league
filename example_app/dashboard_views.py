@@ -56,6 +56,7 @@ def dashboard(request):
 
             context['user_list'] = user_list
             context['is_tim'] = len(tim) > 0
+            print(list_pemain)
 
             return render(request, 'dashboard_manajer.html', context)
     elif role == "Panitia":
