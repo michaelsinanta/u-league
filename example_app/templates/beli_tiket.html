@@ -75,7 +75,8 @@
                 window.location.href = "{% url 'example_app:dashboard' %}"
             },
             error: function(response) {
-              alert(response.message)
+                const message = response.responseJSON.response.split("\n")
+              alert(message[0])
             }
           })
 

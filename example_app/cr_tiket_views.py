@@ -2,7 +2,7 @@ import uuid
 from django.db import connection
 from example_app.utils import dict_fetch_all, get_user_role, get_user_id
 from django.shortcuts import redirect, render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from example_app.r_list_pertandingan_views import get_nama_tim_bertanding
 from django.views.decorators.csrf import csrf_exempt
@@ -106,11 +106,16 @@ def beli_tiket(request, id_pertandingan) :
         jenis_pembayaran = request.POST.get("jenis_pembayaran")
         
         cursor = connection.cursor()
-        cursor.execute(f"""
-            INSERT INTO pembelian_tiket 
-            (nomor_receipt, id_penonton, jenis_tiket, jenis_pembayaran, id_pertandingan)
-            VALUES ('{receipt}', '{id_penonton}', '{jenis_tiket}', '{jenis_pembayaran}', '{id_pertandingan}');
-            """)
+        try  :
+            cursor.execute(f"""
+                INSERT INTO pembelian_tiket 
+                (nomor_receipt, id_penonton, jenis_tiket, jenis_pembayaran, id_pertandingan)
+                VALUES ('{receipt}', '{id_penonton}', '{jenis_tiket}', '{jenis_pembayaran}', '{id_pertandingan}');
+                """)
+            
+        except Exception as e :
+            return JsonResponse({"response" : str(e)}, status=400)
+
         
         cursor.execute(f"""
                        SELECT * from pertandingan WHERE id_pertandingan = '{id_pertandingan}'
