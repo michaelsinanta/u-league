@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from datetime import datetime
 
 def mulai_pertandingan(request):
-    username = request.COOKIES.get('username')
+    username = request.session['info'].get('username')
 
 
 def get_list_pertandingan(request):
