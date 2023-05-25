@@ -5,7 +5,7 @@ from datetime import datetime
 import requests
 
 def dashboard(request):
-    username = request.session['info'].get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 

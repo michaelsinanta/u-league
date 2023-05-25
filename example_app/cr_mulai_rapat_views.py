@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import random
 
 def mulai_rapat(request):
-    username = request.session['info'].get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -50,7 +50,7 @@ def mulai_rapat(request):
     return render(request, 'mulai_rapat.html', context)
 
 def rapat(request):
-    username = request.session['info'].get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
