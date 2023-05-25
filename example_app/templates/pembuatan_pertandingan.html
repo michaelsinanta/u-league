@@ -12,83 +12,113 @@
 <div>
     <h1>Pembuatan Pertandingan</h1>
     <table class="table" style="text-align: center">
-        <thead>
-            <tr>
-                <th colspan="4">List Pertandingan</th>
-            </tr>
-            <tr>
-                <th>Grup A</th>
-                <th>Action</th>
-                <th>Grup B</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- <tr>
-                <td>A vs B</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </td>
-                <td>I vs J</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>C vs D</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </td>
-                <td>K vs L</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>E vs F</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </td>
-                <td>M vs N</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>G vs H</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </td>
-                <td>? vs ?</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </td>
-            </tr> -->
-            <tr>
-                <td>Grup C</td>
-                <td>Action</td>
-                <td>Grup D</td>
-                <td>Action</td>
-            </tr>
-            <!-- <tr>
-                <td>? vs ?</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
-                </td>
-                <td>? vs ?</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
-                </td>
-            </tr> -->
-        </tbody>
+        <tr>
+            <th colspan="2">List Pertandingan</th>
+        </tr>
+        <tr>
+            <td>
+                <table class="table" style="text-align: center">
+                    <tr>
+                        <th>Grup A</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for a in grupA %}
+                    <tr>
+                        <td>
+                            {{ a.team_names }}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-primary">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
+                        </td>
+                    </tr> 
+                </table>
+            </td>
+            <td>
+                <table class="table" style="text-align: center">
+                    <tr>
+                        <th>Grup B</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for b in grupB %}
+                    <tr>
+                        <td>
+                            {{ b.team_names }}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-primary">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
+                        </td>
+                    </tr> 
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table" style="text-align: center">
+                    <tr>
+                        <th>Grup C</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for c in grupC %}
+                    <tr>
+                        <td>
+                            {{ c.team_names }}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-primary">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
+                        </td>
+                    </tr> 
+                </table>
+            </td>
+            <td>
+                <table class="table" style="text-align: center">
+                    <tr>
+                        <th>Grup D</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for d in grupD %}
+                    <tr>
+                        <td>
+                            {{ d.team_names }}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-primary">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
+                        </td>
+                    </tr>  
+                </table>
+            </td>
+        </tr>
     </table>
 
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,31 +129,50 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Stadium</span>
-                        <select class="form-control">
+                    <form id="buat-form" method="post" action="{% url 'example_app:pembuatan_pertandingan' %}">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="basic-addon1">Stadium</span>
+                          <select class="form-control" name="id_stadium">
                             <option value="0">Select Stadium:</option>
-                            <!-- <option value="1">Stadium A</option>
-                            <option value="2">Stadium B</option>
-                            <option value="3">Stadium C</option> -->
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Tanggal</span>
-                        <input type="date" class="form-control" aria-describedby="basic-addon2" />
-                    </div>
+                            {% for s in stadiums %}
+                            <option value="{{ s.id_stadium }}" data-nama="{{ s.nama }}">{{ s.nama }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="basic-addon1">Tanggal</span>
+                          <input type="date" class="form-control" name="tanggal" aria-describedby="basic-addon2"
+                            value="{{ date }}">
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="{% url 'example_app:list_waktu_stadium' %}" class="btn btn-primary">Next</a>
+                    <button type="submit" class="btn btn-primary">Next</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <script
+</div>
+<script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-</div>
+<script>
+    document.getElementById('buat-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const selectElement = document.querySelector('select');
+      const stadiumName = selectElement.options[selectElement.selectedIndex].text;
+      const idStadium = selectElement.value;
+      const date = document.querySelector('[name="tanggal"]').value;
+      
+      const redirectURL = "{% url 'example_app:list_waktu_stadium' %}" +
+        `?stadium_name=${encodeURIComponent(stadiumName)}` +
+        `&id_stadium=${encodeURIComponent(idStadium)}` +
+        `&date=${encodeURIComponent(date)}`;
+      
+      window.location.href = redirectURL;
+    });
+  </script> 
 {% endblock content %}
