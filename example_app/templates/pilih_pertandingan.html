@@ -1,7 +1,5 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %} {% load static %} 
+{% block meta %}
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,6 +11,8 @@
             integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
             crossorigin="anonymous" />
     </head>
+    {% endblock meta %}
+
     <div>
         <link
             rel="stylesheet"
@@ -46,20 +46,15 @@
                 </tr>
             </thead>
             <tbody>
+                {% for i in data %}
                 <tr>
-                    <td>A</td>
-                    <td>B</td>
+                    <td>{{ i.tim_1 }}</td>
+                    <td>{{ i.tim_2 }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary">Pilih</a>
+                        <a class="btn btn-primary"  id="{{i.id_pertandingan}}" onclick="handlePilihPertandingan(this.id)">Pilih</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>C</td>
-                    <td>D</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Pilih</a>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
 
@@ -68,5 +63,11 @@
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"></script>
     </body>
+    <script>
+        function handlePilihPertandingan(id){
+            var create_tiket_url_get = `/beli-tiket/${id}`
+            window.location.href = create_tiket_url_get
+        }
+    </script>
     {% endblock content %}
-</html>
+

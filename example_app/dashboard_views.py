@@ -110,6 +110,7 @@ def dashboard(request):
             context['pertandingan'] = pertandingans
             context['user_list'] = user_list
             context['is_available'] = len(pertandingans) > 0
+            print(context)
             return render(request, 'dashboard_penonton.html', context)
     else :
         return render(request, 'landing_page.html')
