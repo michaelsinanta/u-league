@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 
 def peminjaman_stadium(request):
-    username = request.COOKIES.get('username')
+    username = request.session['info'].get('username')
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -42,7 +42,7 @@ def peminjaman_stadium(request):
             peminjaman['start_end_datetime_tampilan'] = f"{formatted_start_datetime} - {formatted_end_datetime}"
         context['peminjamans'] = peminjamans
 
-        cursor.execute(f"""
+        cursor.execute("""
             SELECT nama, id_stadium
             FROM STADIUM;
         """)
@@ -52,7 +52,7 @@ def peminjaman_stadium(request):
     return render(request, 'peminjaman_stadium.html', context)
 
 def list_waktu_peminjaman_stadium(request):
-    username = request.COOKIES.get('username')
+    username = request.session['info'].get('username')
 
     if username is None:
         return render(request, 'landing_page.html', {}) 

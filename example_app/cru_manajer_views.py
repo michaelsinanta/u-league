@@ -7,12 +7,12 @@ from django.views.decorators.csrf import csrf_exempt
 LANDING_PAGE = 'example_app:show_tim'
 
 def show_tim(request):
-    username = request.COOKIES['username']
+    username = request.session['info'].get('username')
 
     role = get_user_role(username)
     
     with connection.cursor() as cursor:
-        username = request.COOKIES['username']
+        username = request.session['info'].get('username')
         cursor.execute(f'''
             SELECT ID_MANAJER
             FROM MANAJER
@@ -94,7 +94,7 @@ def remove_pemain(request, id_pemain):
 @csrf_exempt
 def add_tim(request):
     if request.method == 'POST':
-        username = request.COOKIES['username']
+        username = request.session['info'].get('username')
         with connection.cursor() as cursor:
 
             cursor.execute(f'''
@@ -134,7 +134,7 @@ def add_tim(request):
 def add_pemain(request):
     if request.method == 'POST':
         with connection.cursor() as cursor:
-            username = request.COOKIES.get('username')
+            username = request.session['info'].get('username')
 
             cursor.execute(f'''
                 SELECT TM.NAMA_TIM
@@ -175,7 +175,7 @@ def make_captain(request, id_pemain):
 def add_pelatih(request):
     if request.method == 'POST':
         with connection.cursor() as cursor:
-            username = request.COOKIES.get('username')
+            username = request.session['info'].get('username')
 
             cursor.execute(f'''
                 SELECT TM.NAMA_TIM
