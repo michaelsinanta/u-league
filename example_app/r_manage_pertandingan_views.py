@@ -10,12 +10,18 @@ def manage_pertanding(request) :
 
     with connection.cursor() as cursor:
         cursor.execute(f"""
-                SELECT T.id_pertandingan AS id_pertandingan, string_agg(T.nama_tim, ' vs ') AS team_names, P.start_datetime
+                SELECT T.id_pertandingan AS id_pertandingan, string_agg(T.nama_tim, ' vs ') AS team_names, M.start_datetime
                 FROM PERTANDINGAN AS P
                 JOIN TIM_PERTANDINGAN AS T ON T.id_pertandingan = P.id_pertandingan
-                GROUP BY P.start_datetime, T.id_pertandingan;
+                JOIN PEMINJAMAN AS M ON M.ID_Stadium = P.Stadium
+                GROUP BY M.start_datetime, T.id_pertandingan;
             """)
         list_pertandingan = dict_fetch_all(cursor)
+        for pertandingan in list_pertandingan:
+            start_datetime = pertandingan['start_datetime']
+            formatted_start_datetime = datetime.strftime(start_datetime, "%b. %d, %Y, %H:%M")
+            pertandingan['start_datetime'] = formatted_start_datetime
+        print(list_pertandingan)
         context['available_pertandingan'] = len(list_pertandingan) > 0
         grupA = []
         grupA.append(list_pertandingan[0:4])
