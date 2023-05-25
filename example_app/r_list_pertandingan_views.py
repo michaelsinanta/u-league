@@ -4,6 +4,8 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from uuid import uuid4;
+from datetime import datetime
+
 
 
 def get_nama_tim_bertanding(list_pertandingan, list_tim_pertandingan) :
@@ -50,18 +52,20 @@ def get_list_pertandingan(request):
     context = {
         'user': {'role': f'{role}'}
     }
-    print(role)
+    
     if(role != "Manajer" and role != "Penonton") :
         return render(request, 'landing_page.html', context)
     
+    datetime_now = datetime.now().strftime("%Y-%m-%d")
+    print(datetime_now)
     cursor = connection.cursor()
-    cursor.execute("""
-                   SELECT * FROM pertandingan
+    cursor.execute(f"""
+                   SELECT * FROM pertandingan WHERE start_datetime > '{datetime_now}'
                    """)
     list_pertandingan = dict_fetch_all(cursor)
-    
+    print(list_pertandingan)
     cursor.execute("""
-                   SELECT * FROM tim_pertandingan
+                   SELECT * FROM tim_pertandingan 
                    """)
     
     list_tim_pertandingan = dict_fetch_all(cursor)

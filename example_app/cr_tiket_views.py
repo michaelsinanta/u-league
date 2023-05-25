@@ -6,6 +6,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from example_app.r_list_pertandingan_views import get_nama_tim_bertanding
 from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
+from django.template.loader import render_to_string
+
+
 
 
 def pilih_stadium(request) :
@@ -32,6 +36,7 @@ def pilih_stadium(request) :
     }
     return render(request, 'pilih_stadium.html', context)
 
+@csrf_exempt
 def pilih_pertandingan(request, id_stadium) :
     username = request.session.get('info', {}).get('username', None)
 
@@ -45,9 +50,13 @@ def pilih_pertandingan(request, id_stadium) :
     if(role != 'Penonton') :
         return render(request, 'landing_page.html', context)
     
+    tanggal = request.GET.get('tanggal', None)
+    tanggal = datetime.strptime(tanggal, "%Y-%m-%d")
+    
     cursor = connection.cursor()
+
     cursor.execute(f"""
-                   SELECT * FROM pertandingan WHERE stadium = '{id_stadium}'
+                   SELECT * FROM pertandingan WHERE stadium = '{id_stadium}' AND start_datetime > '{tanggal}'
                    """)
     list_pertandingan = dict_fetch_all(cursor)
     
@@ -68,10 +77,10 @@ def pilih_pertandingan(request, id_stadium) :
         'user': {
             'role': f'{role}',
         },
-        "data": list_nama_tim_bertanding
+        "data": list_nama_tim_bertanding,
     }
-        
-    return render(request, "pilih_pertandingan.html", context)
+
+    return render(request, 'pilih_pertandingan.html', context)
 
 @csrf_exempt
 def beli_tiket(request, id_pertandingan) :
@@ -102,6 +111,21 @@ def beli_tiket(request, id_pertandingan) :
             (nomor_receipt, id_penonton, jenis_tiket, jenis_pembayaran, id_pertandingan)
             VALUES ('{receipt}', '{id_penonton}', '{jenis_tiket}', '{jenis_pembayaran}', '{id_pertandingan}');
             """)
+        
+        cursor.execute(f"""
+                       SELECT * from pertandingan WHERE id_pertandingan = '{id_pertandingan}'
+                       """)
+        pertandingan = dict_fetch_all(cursor)[0]
+        cursor.execute(f"""
+                       SELECT * from stadium WHERE id_stadium = '{pertandingan['stadium']}'
+                       """)
+        
+        stadium = dict_fetch_all(cursor)[0]
+        kapasitas_stadium = stadium['kapasitas'] - 1
+        
+        cursor.execute(f"""
+                       UPDATE stadium SET kapasitas = {kapasitas_stadium} WHERE id_stadium = '{stadium['id_stadium']}'
+                       """)
         
         return HttpResponse(status=200)
     else :

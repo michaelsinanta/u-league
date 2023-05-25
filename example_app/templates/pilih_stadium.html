@@ -8,7 +8,7 @@
         crossorigin="anonymous" />
 </head>
 {% endblock meta %} {% block content %}
-<div class="container mx-auto col-md-6 border border-dark d-flex flex-column mb-3" style="max-height: 60vh">
+<div class="container mx-auto col-md-6 border border-dark d-flex flex-column mb-3 rendered" style="max-height: 60vh">
     <div class="d-flex justify-content-center align-items-center mt-3">
         <h5>Pilih Stadium</h5>
     </div>
@@ -25,7 +25,7 @@
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Tanggal</span>
-                <input type="date" class="form-control" aria-describedby="basic-addon2" />
+                <input type="date" class="form-control" aria-describedby="basic-addon2" id="input-tanggal"/>
             </div>
         </div>
     </div>
@@ -40,18 +40,24 @@
     crossorigin="anonymous">
 </script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
 <script>
-    var url = 'pilih-pertandingan/';
+    var url = '/pilih-pertandingan';
     $(document).ready(function() {
       $("#nextButton").click(function(e) {
         e.preventDefault()
          var idStadium = $("#input-selection").val();
+         var tanggal = $("#input-tanggal").val();
+
          if(idStadium === "0"){
             alert("Please select Stadium")
             return;
          }
 
-         url = url + idStadium
+         url = `${url}/${idStadium}?tanggal=${tanggal}`
          window.location.href = url
       })
     })
