@@ -27,18 +27,7 @@ def login(request) :
     return render(request, 'login.html')
 
 def manage_pertanding(request) :
-    username = request.COOKIES.get('username', None)
-
-    if username is None:
-        return render(request, 'landing_page.html', {}) 
-
-    role = get_user_role(username)
-    context = {
-        'user': {
-            'role': f'{role}',
-        }
-    }
-    return render(request, 'manage_pertandingan.html', context)
+    return render(request, 'manage_pertandingan.html')
 
 def pembuatan_pertandingan(request):
     return render(request, 'pembuatan_pertandingan.html')
@@ -64,9 +53,6 @@ def buat_pertandingan_antar_2tim(request):
 def list_pertandingan(request):
     return render(request, 'list_pertandingan.html')
 
-def list_pertandingan_grup(request):
-    return render(request, 'list_pertandingan_grup.html')
-
 def pilih_pertandingan(request):
     return render(request, 'pilih_pertandingan.html')
 
@@ -88,8 +74,8 @@ def mulai_rapat(request):
 def rapat(request):
     return render(request, 'rapat.html')
 
-def pilih_peristiwa(request):
-    return render(request, 'pilih_peristiwa.html')
+def mulai_pertandingan(request):
+    return render(request, 'mulai_pertandingan.html')
 
 def peristiwa(request):
     return render(request, 'peristiwa.html')
