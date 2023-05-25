@@ -2,7 +2,7 @@ from django.shortcuts import render
 from example_app.utils import get_user_role
 
 def index(request):
-    username = request.session['info'].get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 

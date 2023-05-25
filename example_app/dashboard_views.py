@@ -5,7 +5,7 @@ from datetime import datetime
 import requests
 
 def dashboard(request):
-    username = request.session['info'].get('username')
+    username = request.session.get('info', {}).get('username', None)
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -41,20 +41,21 @@ def dashboard(request):
             WHERE ID_MANAJER='{id_manajer[0].get('id_manajer')}';
             ''')
             tim = dict_fetch_all(cursor)
-
-            cursor.execute(f'''
-                SELECT *
-                FROM PEMAIN P
-                JOIN TIM T ON T.NAMA_TIM=P.NAMA_TIM
-                WHERE T.NAMA_TIM='{tim[0].get('nama_tim')}'
-                ORDER BY NAMA_DEPAN;
-            ''')
-            list_pemain = dict_fetch_all(cursor)
+            
+            if (len(tim) > 0):
+                cursor.execute(f'''
+                    SELECT *
+                    FROM PEMAIN P
+                    JOIN TIM T ON T.NAMA_TIM=P.NAMA_TIM
+                    WHERE T.NAMA_TIM='{tim[0].get('nama_tim')}'
+                    ORDER BY NAMA_DEPAN;
+                ''')
+                list_pemain = dict_fetch_all(cursor)
+                context['list_pemain'] = list_pemain
+                context['nama_tim'] = tim[0].get('nama_tim')
 
             context['user_list'] = user_list
             context['is_tim'] = len(tim) > 0
-            context['nama_tim'] = tim[0].get('nama_tim')
-            context['list_pemain'] = list_pemain
 
             return render(request, 'dashboard_manajer.html', context)
     elif role == "Panitia":
@@ -109,6 +110,7 @@ def dashboard(request):
             context['pertandingan'] = pertandingans
             context['user_list'] = user_list
             context['is_available'] = len(pertandingans) > 0
+            print(context)
             return render(request, 'dashboard_penonton.html', context)
     else :
         return render(request, 'landing_page.html')

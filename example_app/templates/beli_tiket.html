@@ -15,34 +15,72 @@
     <div class="d-flex mt-3 col-md-8">
         <div>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Jenis Tiket</span>
-                <select class="form-control">
+                <span class="input-group-text" >Jenis Tiket</span>
+                <select class="form-control" id="jenis-tiket">
                     <option value="0">Pilih Tiket:</option>
-                    <option value="1">VIP</option>
-                    <option value="2">Main East</option>
-                    <option value="3">Kategori 1</option>
-                    <option value="4">Kategori 2</option>
+                    <option value="VIP">VIP</option>
+                    <option value="Main East">Main East</option>
+                    <option value="Kategori 1">Kategori 1</option>
+                    <option value="Kategori 2">Kategori 2</option>
                 </select>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Pembayaran</span>
-                <select class="form-control">
+                <span class="input-group-text" >Pembayaran</span>
+                <select class="form-control" id="pembayaran">
                     <option value="0">Pilih Pembayaran:</option>
-                    <option value="1">GoPay</option>
-                    <option value="2">ShopeePay</option>
-                    <option value="3">Dana</option>
-                    <option value="4">OVO</option>
+                    <option value="Gopay">GoPay</option>
+                    <option value="ShopeePay">ShopeePay</option>
+                    <option value="Dana">Dana</option>
+                    <option value="OVO">OVO</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="d-flex justify-content-center align-items-center mb-3">
-        <button class="btn btn-primary">Beli</button>
+        <button class="btn btn-primary" id="beliButton">Beli</button>
     </div>
 </div>
 
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#beliButton").click(function(e) {
+          e.preventDefault()
+           var jenis_tiket = $("#jenis-tiket").val();
+           var pembayaran = $("#pembayaran").val();
+            
+           if(jenis_tiket === "0" || pembayaran === "0") {
+            alert("Jenis Tiket atau Pembayaran tidak boleh kosong")
+            return;
+           }
+           const id = `{{data}}`
+           var create_tiket_url_post = `/beli-tiket/${id}`
+           $.ajax({
+            method: 'POST',
+            url: create_tiket_url_post,
+            data: {
+                "id_pertandingan" : id,
+                "jenis_tiket" : jenis_tiket,
+                "jenis_pembayaran" : pembayaran,
+            },
+            success: function(response){
+                alert("success")
+                window.location.href = "{% url 'example_app:dashboard' %}"
+            },
+            error: function(response) {
+                const message = response.responseJSON.response.split("\n")
+              alert(message[0])
+            }
+          })
+
+        })
+      })
+</script>
 {% endblock content %}
