@@ -5,7 +5,7 @@ from datetime import datetime
 import requests
 
 def dashboard(request):
-    username = request.COOKIES.get('username', None)
+    username = request.session['info'].get('username')
 
     if username is None:
         return render(request, 'landing_page.html', {}) 

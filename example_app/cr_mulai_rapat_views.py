@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import random
 
 def mulai_rapat(request):
-    username = request.COOKIES.get('username')
+    username = request.session['info'].get('username')
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -50,7 +50,7 @@ def mulai_rapat(request):
     return render(request, 'mulai_rapat.html', context)
 
 def rapat(request):
-    username = request.COOKIES.get('username')
+    username = request.session['info'].get('username')
 
     if username is None:
         return render(request, 'landing_page.html', {}) 
@@ -75,7 +75,7 @@ def rapat(request):
         start_datetime = request.POST.get('start_datetime')
         id_pertandingan = request.POST.get('id_pertandingan')
         isi_rapat = request.POST.get('isi_rapat')
-        username = request.COOKIES.get('username')
+        username = request.session['info'].get('username')
         perwakilan_panitia = get_user_id(username)
         team_names_split = team_names.split(" vs ")
         manajer_tim_a = get_manajer_id_by_team(team_names_split[0])
